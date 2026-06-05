@@ -1,0 +1,248 @@
+Prompt Codex — Smart Industrial Asset Intelligence PWA (MVP Hackathon)
+Contexte général
+Tu dois développer une PWA (Progressive Web App) complète pour la gestion de maintenance industrielle. Il existe deux fichiers ZIP Stitch contenant le design déjà défini — un pour l'app mobile (technicien) et un pour la plateforme web (manager/admin). Tu ne modifies pas le design. Tu l'implémentes tel quel et tu le complètes avec les fonctionnalités décrites ci-dessous.
+
+Stack technique
+CoucheTechnologieFrontendReact + ViteBackendNode.js + ExpressBase de donnéesSQLite (fichier local database.db)ORMbetter-sqlite3AuthJWT stocké en localStorageUpload photosMulter (stockage local dans /uploads)IAAPI Claude (Anthropic)QR Codeqrcode.react (génération) + html5-qrcode (scan)PWAService Worker + manifest.json
+Tout tourne en local. Aucune dépendance cloud. La démo fonctionne sans internet.
+
+Structure du projet
+/project
+  /client              → React + Vite (frontend)
+    /src
+      /mobile          → écrans technicien
+      /web             → écrans manager/admin
+      /shared          → composants communs, hooks, appels API
+      /pwa             → Service Worker, manifest.json
+  /server              → Node.js + Express (backend)
+    /routes            → routes API REST
+    /controllers       → logique métier
+    /db                → init SQLite, migrations, seeds
+    /uploads           → photos stockées localement
+  database.db          → fichier SQLite généré automatiquement
+
+Base de données SQLite — tables à créer
+sqlCREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role TEXT CHECK(role IN ('technicien', 'manager', 'admin')) NOT NULL,
+  nom TEXT,
+  prenom TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE equipements (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nom TEXT NOT NULL,
+  modele TEXT,
+  numero_serie TEXT UNIQUE,
+  fabricant TEXT,
+  localisation TEXT,
+  criticite TEXT CHECK(criticite IN ('faible', 'moyenne', 'haute', 'critique')),
+  date_achat DATE,
+  statut TEXT DEFAULT 'actif',
+  qr_code_url TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE pannes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  equipement_id INTEGER REFERENCES equipements(id),
+  technicien_id INTEGER REFERENCES users(id),
+  description TEXT,
+  severite TEXT CHECK(severite IN ('mineur', 'modere', 'urgent', 'critique')),
+  statut TEXT DEFAULT 'en_attente',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  closed_at DATETIME
+);
+
+CREATE TABLE photos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  panne_id INTEGER REFERENCES pannes(id),
+  url TEXT NOT NULL,
+  annotation TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE workflow_etapes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  panne_id INTEGER REFERENCES pannes(id),
+  titre TEXT NOT NULL,
+  assignee_id INTEGER REFERENCES users(id),
+  statut TEXT DEFAULT 'en_attente',
+  ordre INTEGER,
+  deadline DATETIME,
+  completed_at DATETIME
+);
+
+CREATE TABLE demandes_pieces (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  panne_id INTEGER REFERENCES pannes(id),
+  piece_nom TEXT NOT NULL,
+  quantite INTEGER DEFAULT 1,
+  urgence TEXT CHECK(urgence IN ('standard', 'urgent', 'critique')),
+  statut TEXT DEFAULT 'en_attente',
+  commentaire TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE diagnostics_ia (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  panne_id INTEGER REFERENCES pannes(id),
+  resultat_json TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+API REST — routes Express à créer
+POST   /api/auth/login
+POST   /api/auth/register
+
+GET    /api/equipements
+POST   /api/equipements
+GET    /api/equipements/:id
+PUT    /api/equipements/:id
+GET    /api/equipements/:id/qrcode
+
+GET    /api/pannes
+POST   /api/pannes
+GET    /api/pannes/:id
+PUT    /api/pannes/:id/statut
+
+POST   /api/pannes/:id/photos          → upload avec Multer
+GET    /api/pannes/:id/photos
+
+GET    /api/pannes/:id/etapes
+POST   /api/pannes/:id/etapes
+PUT    /api/etapes/:id/statut
+
+GET    /api/pannes/:id/pieces
+POST   /api/pannes/:id/pieces
+PUT    /api/pieces/:id/statut
+
+POST   /api/pannes/:id/diagnostic      → appel Claude API
+GET    /api/pannes/:id/diagnostic
+
+GET    /api/analytics/pannes-par-equipement
+GET    /api/analytics/pieces-frequentes
+GET    /api/analytics/tendances
+GET    /api/analytics/risques
+
+GET    /api/users
+POST   /api/users
+PUT    /api/users/:id/role
+
+Authentification
+
+À la connexion, le serveur génère un JWT signé avec une clé secrète locale
+Le token est stocké en localStorage côté client
+Chaque requête API envoie le token dans le header Authorization: Bearer <token>
+Le middleware Express vérifie le token et expose req.user (id, role)
+À la connexion, le frontend lit le role dans le token et redirige :
+
+technicien → interface mobile
+manager ou admin → interface web desktop
+
+
+
+
+Interface 1 — App mobile (technicien)
+Design fourni dans le ZIP Stitch mobile. L'implémenter exactement. Compléter avec :
+Scanner QR Code
+
+Ouvrir la caméra via html5-qrcode
+Lire le QR code d'une machine → appel GET /api/equipements/:id
+Afficher la fiche : nom, modèle, numéro de série, statut, historique des pannes
+
+Signaler une panne
+
+Formulaire : sélection machine, description, sévérité (Critique / Urgent / Modéré / Mineur)
+Horodatage automatique côté serveur
+Capture de 4 photos guidées avec instructions à l'écran pour chaque angle
+Upload via POST /api/pannes/:id/photos
+
+Diagnostic IA
+
+Après upload des photos, appel à POST /api/pannes/:id/diagnostic
+Le serveur envoie les photos + description à l'API Claude
+Claude retourne : type de défaut probable, cause possible, pièces suggérées
+Afficher le résultat dans une carte sur l'écran de la panne
+
+Suivi de mon workflow
+
+GET /api/pannes filtré sur technicien_id = moi
+Afficher les étapes assignées avec statut
+Bouton "Marquer comme fait" → PUT /api/etapes/:id/statut
+
+Demander des pièces
+
+Formulaire pré-rempli avec les pièces suggérées par l'IA
+Le technicien confirme ou modifie
+Soumission → POST /api/pannes/:id/pieces
+
+Mode hors-ligne
+
+Service Worker met en cache les assets et les données récentes
+Formulaires remplis sans réseau stockés en IndexedDB
+Sync automatique au retour du réseau
+
+
+Interface 2 — Plateforme web (manager / admin)
+Design fourni dans le ZIP Stitch web. L'implémenter exactement. Compléter avec :
+Dashboard temps réel
+
+Polling toutes les 10 secondes sur les endpoints analytics et pannes
+Compteurs : pannes ouvertes, machines en arrêt, demandes en attente, techniciens actifs
+Liste des incidents critiques avec minuterie depuis création
+
+Gérer les équipements
+
+GET /api/equipements avec filtres et recherche
+Création : POST /api/equipements
+QR code généré automatiquement à la création, téléchargeable en PNG
+Fiche détaillée avec historique complet
+
+Assigner les techniciens
+
+Vue liste des pannes ouvertes
+Créer les étapes de workflow : POST /api/pannes/:id/etapes
+Assigner un technicien par étape avec deadline
+
+Valider les demandes de pièces
+
+GET /api/pieces avec statut "en_attente"
+Boutons Approuver / Rejeter → PUT /api/pieces/:id/statut
+
+Analytics & insights
+
+Graphiques avec Recharts :
+
+Pannes par équipement (bar chart)
+Pièces les plus demandées (bar chart)
+Tendances sur 30/60/90 jours (line chart)
+Score de risque par machine (calculé sur fréquence de pannes)
+
+
+Export JSON des données (le jury peut vérifier la structure)
+
+Gestion des utilisateurs
+
+GET /api/users — liste
+POST /api/users — créer un compte
+PUT /api/users/:id/role — changer le rôle
+
+
+Contraintes importantes
+
+Ne pas modifier le design Stitch — brancher les composants fonctionnels dans les conteneurs définis par le design
+Utiliser les variables CSS et classes définies dans les fichiers Stitch
+Le serveur Express tourne sur le port 3001, le client Vite sur le port 5173
+Un fichier seed.js doit peupler la base avec des données de démonstration (5 machines, 3 users, quelques pannes) pour la démo jury
+Un seul fichier .env à la racine du projet suffit :
+
+PORT=3001
+JWT_SECRET=hackathon_secret_key
+ANTHROPIC_API_KEY=ta_clé_ici
+
+L'app doit être installable sur Android et iOS (manifest.json + Service Worker configurés)
+Interface mobile optimisée pour 390px, interface web pour 1280px+
