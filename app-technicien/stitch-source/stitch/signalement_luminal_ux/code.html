@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Report a Breakdown - FieldTech Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .severity-card:hover .severity-icon {
+            transform: scale(1.1);
+        }
+        .mic-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#c64f00",
+                        "inverse-primary": "#adc6ff",
+                        "on-secondary-container": "#fffbff",
+                        "secondary-fixed-dim": "#c2c1ff",
+                        "surface-container-high": "#e9e7ed",
+                        "on-background": "#1a1b1f",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c1c6d7",
+                        "secondary": "#4c4aca",
+                        "primary-container": "#0070eb",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-secondary-fixed": "#0c006a",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#004493",
+                        "background": "#faf9fe",
+                        "tertiary": "#9e3d00",
+                        "on-surface-variant": "#414755",
+                        "error-container": "#ffdad6",
+                        "primary": "#0058bc",
+                        "inverse-on-surface": "#f1f0f5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#005bc1",
+                        "surface-container": "#eeedf3",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2f3034",
+                        "on-primary": "#ffffff",
+                        "outline": "#717786",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-variant": "#e3e2e7",
+                        "secondary-container": "#6664e4",
+                        "on-secondary-fixed-variant": "#3631b4",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container-low": "#f4f3f8",
+                        "primary-fixed": "#d8e2ff",
+                        "on-tertiary-fixed-variant": "#7c2e00",
+                        "surface-dim": "#dad9df",
+                        "surface": "#faf9fe",
+                        "on-primary-container": "#fefcff",
+                        "on-tertiary-fixed": "#351000",
+                        "tertiary-fixed-dim": "#ffb595",
+                        "surface-bright": "#faf9fe",
+                        "on-tertiary-container": "#fffbff",
+                        "on-surface": "#1a1b1f",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001a41",
+                        "surface-container-highest": "#e3e2e7",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "margin-desktop": "48px",
+                        "sm": "12px",
+                        "xl": "64px",
+                        "gutter": "24px",
+                        "lg": "40px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 shadow-sm bg-surface flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary" data-icon="close">close</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Report a Breakdown</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="hidden md:flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface">Pump HZ-880</span>
+<span class="text-[10px] text-outline">Asset ID: 99203-HZ</span>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</header><div class="fixed top-16 w-full z-40 bg-surface-container-low border-b border-outline-variant px-margin-mobile py-3">
+<div class="max-w-4xl mx-auto flex items-center justify-between">
+<div class="flex flex-col items-center gap-1">
+<div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold">1</div>
+<span class="text-[10px] font-bold text-primary uppercase">Asset</span>
+</div>
+<div class="flex-1 h-px bg-outline-variant mx-2 mb-4"></div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-[10px] font-bold">2</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Severity</span>
+</div>
+<div class="flex-1 h-px bg-outline-variant mx-2 mb-4"></div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-outline flex items-center justify-center text-[10px] font-bold">3</div>
+<span class="text-[10px] font-bold text-outline uppercase">Details</span>
+</div>
+<div class="flex-1 h-px bg-outline-variant mx-2 mb-4"></div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-outline flex items-center justify-center text-[10px] font-bold">4</div>
+<span class="text-[10px] font-bold text-outline uppercase">Parts</span>
+</div>
+</div>
+</div>
+<main class="pt-24 pb-32 max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Asset Context Hero -->
+<section class="mb-lg p-6 bg-surface-container-lowest rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-[#F2F2F7] flex flex-col md:flex-row gap-6 items-center">
+<div class="w-full md:w-1/3 aspect-video bg-surface-container rounded-lg overflow-hidden">
+<img alt="Industrial Water Pump" class="w-full h-full object-cover" data-alt="A high-resolution, professional photograph of a modern industrial hydraulic water pump system, Pump HZ-880, situated in a clean, brightly lit technical facility. The lighting is bright and airy with soft shadows, highlighting the metallic blue finishes and intricate piping. The overall aesthetic is clean, minimalist, and high-tech, reflecting a professional engineering environment with white walls and polished concrete floors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx3rdqzqDyGlWr614ddISwyxakc-ublLeOh9ZmzsDLZGyo4eTH-lvoJa_EJvLb9yXLsKakFsdJYkqfWAOXnsCMTglK3MxIPHCMrU_hEgPvHWI9HCAUa7MGJ68R9na287yyAeF3BvnJLo2oR2pbfvNoRGRPe8uRiuTX5kPEYNShDVCP8xpjlDKxeHzxK2qkogRWEd2Nregt294LXeiApn8N2rrl-1EYDByyDDZ8MGWP4lhBs0Zx3RmMet6koQdI9wffzrOs79kPUK_E"/>
+</div>
+<div class="w-full md:w-2/3">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container text-[10px] font-bold rounded uppercase tracking-wider">Active Asset</span>
+<span class="text-outline text-label-sm">Location: Sector B-12</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Pump HZ-880</h2>
+<p class="text-on-surface-variant font-body-md">Primary circulation pump for cooling tower assembly. Last maintenance: 14 days ago.</p>
+</div>
+</section>
+<!-- Severity Selection -->
+<section class="mb-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-4">Select Severity Level</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Critical -->
+<button class="severity-card group flex flex-col items-center p-6 bg-surface-container-lowest border-2 border-transparent rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:shadow-lg active:scale-95 hover:border-error" onclick="selectSeverity(this)">
+<div class="severity-icon w-12 h-12 rounded-full bg-error-container flex items-center justify-center mb-3 transition-transform">
+<span class="material-symbols-outlined text-error" data-icon="report" data-weight="fill">report</span>
+</div>
+<span class="font-label-md text-label-md text-error font-bold">Critical</span>
+<span class="text-[10px] text-outline text-center mt-1">Total Failure</span>
+</button>
+<!-- Urgent -->
+<button class="severity-card group flex flex-col items-center p-6 bg-surface-container-lowest border-2 border-transparent rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:shadow-lg active:scale-95 hover:border-tertiary" onclick="selectSeverity(this)">
+<div class="severity-icon w-12 h-12 rounded-full bg-[#ffeadb] flex items-center justify-center mb-3 transition-transform">
+<span class="material-symbols-outlined text-[#9e3d00]" data-icon="warning" data-weight="fill">warning</span>
+</div>
+<span class="font-label-md text-label-md text-[#9e3d00] font-bold">Urgent</span>
+<span class="text-[10px] text-outline text-center mt-1">Limited Ops</span>
+</button>
+<!-- Moderate -->
+<button class="severity-card group flex flex-col items-center p-6 bg-surface-container-lowest border-2 border-transparent rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:shadow-lg active:scale-95" onclick="selectSeverity(this)">
+<div class="severity-icon w-12 h-12 rounded-full bg-[#fff5cc] flex items-center justify-center mb-3 transition-transform">
+<span class="material-symbols-outlined text-[#6b5900]" data-icon="error_outline" data-weight="fill">error_outline</span>
+</div>
+<span class="font-label-md text-label-md text-[#6b5900] font-bold">Moderate</span>
+<span class="text-[10px] text-outline text-center mt-1">Efficiency Loss</span>
+</button>
+<!-- Minor -->
+<button class="severity-card group flex flex-col items-center p-6 bg-surface-container-lowest border-2 border-transparent rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:shadow-lg active:scale-95" onclick="selectSeverity(this)">
+<div class="severity-icon w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center mb-3 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="info" data-weight="fill">info</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">Minor</span>
+<span class="text-[10px] text-outline text-center mt-1">Noise/Vibration</span>
+</button>
+</div>
+</section>
+<!-- Voice Report Section -->
+<section class="mb-lg">
+<div class="p-8 bg-primary rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden relative shadow-lg">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary-container rounded-full opacity-20"></div>
+<div class="z-10">
+<h4 class="font-headline-md text-headline-md text-white mb-2">Voice Report</h4>
+<p class="text-primary-fixed font-body-md max-w-md">Record a quick description of the issue. Our AI will transcribe and categorize the details automatically.</p>
+</div>
+<button class="z-10 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform group" id="micBtn">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform" data-icon="mic" data-weight="fill">mic</span>
+<span class="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-white text-[10px] font-bold uppercase tracking-widest">Start Recording</span></button>
+</div>
+</section>
+<!-- Details Section -->
+<section class="mb-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-4">Manual Breakdown Details</h3>
+<textarea class="w-full min-h-[160px] p-6 bg-surface-container-lowest border border-[#F2F2F7] rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="Describe the symptoms, error codes, or physical damage observed..."></textarea>
+</section>
+<!-- Suggested Spare Parts -->
+<section class="mb-xl">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Suggested Spare Parts</h3>
+<span class="text-[10px] text-outline font-bold">BASED ON ASSET HISTORY</span>
+</div>
+<div class="space-y-3">
+<div class="p-4 bg-surface-container-low rounded-xl flex items-center justify-between group hover:bg-surface-container transition-colors"><div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings_input_component">settings_input_component</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Mechanical Seal Kit HZ-880</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.5 bg-primary-container/10 text-primary text-[10px] font-bold rounded">12 IN STOCK</span>
+<button class="text-[10px] text-primary font-bold hover:underline">View Drawing</button>
+</div>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full border border-[#F2F2F7] bg-white flex items-center justify-center text-primary hover:bg-primary-container hover:text-white transition-all active:scale-90 shadow-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button></div>
+<div class="p-4 bg-surface-container-low rounded-xl flex items-center justify-between group hover:bg-surface-container transition-colors"><div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="hardware">hardware</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">High-Temp Lubricant Cartridge</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.5 bg-primary-container/10 text-primary text-[10px] font-bold rounded">45 IN STOCK</span>
+<button class="text-[10px] text-primary font-bold hover:underline">View Drawing</button>
+</div>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full border border-[#F2F2F7] bg-white flex items-center justify-center text-primary hover:bg-primary-container hover:text-white transition-all active:scale-90 shadow-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button></div>
+<div class="p-4 bg-surface-container-low rounded-xl flex items-center justify-between group hover:bg-surface-container transition-colors"><div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bolt">bolt</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Drive Belt V-Series 450</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.5 bg-error-container text-error text-[10px] font-bold rounded">3 IN STOCK</span>
+<button class="text-[10px] text-primary font-bold hover:underline">View Drawing</button>
+</div>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full border border-[#F2F2F7] bg-white flex items-center justify-center text-primary hover:bg-primary-container hover:text-white transition-all active:scale-90 shadow-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button></div>
+</div>
+<button class="mt-4 w-full py-3 border-2 border-dashed border-outline-variant rounded-xl text-outline font-label-md hover:bg-surface-container-low transition-colors active:scale-98">
+                + Browse Parts Catalog
+            </button>
+</section>
+</main>
+<!-- Fixed Bottom Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface-container-lowest p-6 border-t border-[#F2F2F7] z-50">
+<div class="max-w-4xl mx-auto flex items-center gap-4">
+<button class="flex-1 py-4 bg-primary text-white rounded-xl font-headline-md text-label-md font-bold shadow-lg shadow-primary/20 hover:bg-primary-container transition-all active:scale-95">
+                Submit Report
+            </button>
+<button class="px-6 py-4 border border-[#F2F2F7] text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all active:scale-95">
+                Save Draft
+            </button>
+</div>
+</footer>
+<script>
+        function selectSeverity(element) {
+            // Reset all cards
+            document.querySelectorAll('.severity-card').forEach(card => {
+                card.classList.remove('border-primary', 'bg-primary-container/5', 'shadow-md');
+                card.classList.add('border-transparent');
+            });
+            // Highlight selected
+            element.classList.remove('border-transparent');
+            element.classList.add('border-primary', 'bg-primary-container/5', 'shadow-md');
+        }
+
+        const micBtn = document.getElementById('micBtn');
+        let isRecording = false;
+
+        micBtn.addEventListener('click', () => {
+            isRecording = !isRecording;
+            if (isRecording) {
+                micBtn.classList.add('mic-pulse', 'ring-4', 'ring-white/50');
+                micBtn.querySelector('span').textContent = 'stop';
+                micBtn.querySelector('span').classList.replace('text-primary', 'text-error');
+            } else {
+                micBtn.classList.remove('mic-pulse', 'ring-4', 'ring-white/50');
+                micBtn.querySelector('span').textContent = 'mic';
+                micBtn.querySelector('span').classList.replace('text-error', 'text-primary');
+            }
+        });
+    </script>
+</body></html>

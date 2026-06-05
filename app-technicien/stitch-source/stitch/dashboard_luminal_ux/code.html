@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FieldTech Pro | Maintenance Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#c64f00",
+                      "inverse-primary": "#adc6ff",
+                      "on-secondary-container": "#fffbff",
+                      "secondary-fixed-dim": "#c2c1ff",
+                      "surface-container-high": "#e9e7ed",
+                      "on-background": "#1a1b1f",
+                      "on-error": "#ffffff",
+                      "outline-variant": "#c1c6d7",
+                      "secondary": "#4c4aca",
+                      "primary-container": "#0070eb",
+                      "tertiary-fixed": "#ffdbcc",
+                      "on-secondary-fixed": "#0c006a",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#004493",
+                      "background": "#faf9fe",
+                      "tertiary": "#9e3d00",
+                      "on-surface-variant": "#414755",
+                      "error-container": "#ffdad6",
+                      "primary": "#0058bc",
+                      "inverse-on-surface": "#f1f0f5",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#005bc1",
+                      "surface-container": "#eeedf3",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#2f3034",
+                      "on-primary": "#ffffff",
+                      "outline": "#717786",
+                      "secondary-fixed": "#e2dfff",
+                      "surface-variant": "#e3e2e7",
+                      "secondary-container": "#6664e4",
+                      "on-secondary-fixed-variant": "#3631b4",
+                      "primary-fixed-dim": "#adc6ff",
+                      "surface-container-low": "#f4f3f8",
+                      "primary-fixed": "#d8e2ff",
+                      "on-tertiary-fixed-variant": "#7c2e00",
+                      "surface-dim": "#dad9df",
+                      "surface": "#faf9fe",
+                      "on-primary-container": "#fefcff",
+                      "on-tertiary-fixed": "#351000",
+                      "tertiary-fixed-dim": "#ffb595",
+                      "surface-bright": "#faf9fe",
+                      "on-tertiary-container": "#fffbff",
+                      "on-surface": "#1a1b1f",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#001a41",
+                      "surface-container-highest": "#e3e2e7",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "margin-desktop": "48px",
+                      "sm": "12px",
+                      "xl": "64px",
+                      "gutter": "24px",
+                      "lg": "40px",
+                      "base": "8px",
+                      "margin-mobile": "16px",
+                      "md": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24 md:pb-0 md:pt-16">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 shadow-sm bg-surface flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">FieldTech Pro</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="hidden md:flex items-center gap-6 mr-8">
+<a class="text-primary font-label-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Tasks</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Machines</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Reports</a>
+</div>
+<button class="text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed font-bold text-xs overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a senior field technician named J. Miller, wearing a clean navy blue uniform. He is in a brightly lit, modern industrial workspace with blurred machinery in the background. The lighting is crisp and high-key, maintaining a professional and reliable atmosphere consistent with a high-tech maintenance environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdYsbCsKp6kZhexm00BG1_F4DAWcpArKZVjt23sVTcDZ1gLAvNUKRA61rtEgWuO8ooEeVMgx84DCDCYgVSA9Imoju-fD2k6R3YwClH-c1pTfNWw74RSpiHfa8ngaYH_gKmyXPoD4Fyso0eXQiOx7PR4Av1erkb2zpNnVjeE3OEJRNgcQ_f1si-TN0GN5Uq6Vk-BqU4dun-P5yM8Yiq25btA_AJDuDRragWSQItj_Jkoa4MoX6fUFLZr8K0ZM0JdM-tOQfVnt1Plgt9"/>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12">
+<!-- Welcome Header -->
+<section class="mb-lg">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Welcome back, J. Miller</h2>
+<p class="font-body-md text-on-surface-variant">Here is your fleet status for today, October 24th.</p>
+</section>
+<!-- Bento Grid Summary -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-lg">
+<!-- Summary Card 1: Assigned Breakdowns -->
+<div class="md:col-span-4 bg-surface-container-lowest p-md rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-[#F2F2F7] flex flex-col justify-between h-40 group hover:shadow-md transition-shadow active:scale-95 cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md">Assigned Breakdowns</span>
+<span class="material-symbols-outlined text-primary bg-primary-fixed-dim p-2 rounded-lg" data-icon="engineering">engineering</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-xl font-headline-xl text-on-surface">07</span>
+<span class="text-error font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> +2 today
+                    </span>
+</div>
+</div>
+<!-- Summary Card 2: Active Tasks -->
+<div class="md:col-span-4 bg-surface-container-lowest p-md rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-[#F2F2F7] flex flex-col justify-between h-40 group hover:shadow-md transition-shadow active:scale-95 cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md">Active Tasks</span>
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed p-2 rounded-lg" data-icon="assignment_turned_in">assignment_turned_in</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-xl font-headline-xl text-on-surface">02</span>
+<span class="text-on-surface-variant font-label-sm">Scheduled for 14:00</span>
+</div>
+</div>
+<!-- Critical Alert Card -->
+<div class="md:col-span-4 bg-error-container p-md rounded-xl shadow-lg border-l-4 border-error flex flex-col justify-between h-40 relative overflow-hidden"><div class="absolute -right-4 -top-4 opacity-10"><span class="material-symbols-outlined text-[120px]" data-icon="warning">warning</span></div><div class="flex justify-between items-start"><div><h3 class="text-on-error-container font-label-md flex items-center gap-2"><span class="material-symbols-outlined text-[18px]" data-icon="report">report</span> Critical Alert</h3><p class="text-on-error-container font-body-md mt-1 font-semibold">Unit RX-900: Critical Temp</p></div><button class="bg-error text-on-error font-label-md px-4 py-2 rounded-lg hover:brightness-110 active:scale-95 transition-all shadow-lg border-2 border-on-error/20">Intervene Now</button></div></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-start">
+<!-- Priority Interventions List -->
+<section class="md:col-span-2 space-y-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Priority Interventions</h3>
+<button class="text-primary font-label-md hover:underline">View All</button>
+</div><div class="flex gap-2 mb-2"><button class="bg-primary text-on-primary px-4 py-1 rounded-full text-label-sm">All</button><button class="bg-surface-container-high text-on-surface-variant px-4 py-1 rounded-full text-label-sm hover:bg-primary-container transition-colors">Urgent</button><button class="bg-surface-container-high text-on-surface-variant px-4 py-1 rounded-full text-label-sm hover:bg-primary-container transition-colors">Normal</button></div>
+<!-- Intervention Card 1 -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-[#F2F2F7] flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:shadow-md transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface">Hydraulic Pump Failure</h4>
+<p class="text-on-surface-variant text-label-sm">Machine ID: #M-2049 • Sector 7G • <span class="text-error font-semibold">12m ago</span></p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                            North Depot
+                        </div>
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-label-sm font-semibold">Urgent</span>
+<button class="p-2 text-primary hover:bg-primary-container hover:text-on-primary-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Intervention Card 2 -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-[#F2F2F7] flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:shadow-md transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="settings_input_component">settings_input_component</span>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface">Sensor Calibration Required</h4>
+<p class="text-on-surface-variant text-label-sm">Machine ID: #L-1022 • Sector 3B • <span class="text-on-surface-variant">45m ago</span></p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                            East Wing
+                        </div>
+<span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full text-label-sm font-semibold">Normal</span>
+<button class="p-2 text-primary hover:bg-primary-container hover:text-on-primary-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Intervention Card 3 -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-[#F2F2F7] flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:shadow-md transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="oil_barrel">oil_barrel</span>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface">Routine Fluid Analysis</h4>
+<p class="text-on-surface-variant text-label-sm">Machine ID: #G-5501 • Sector 1A • <span class="text-on-surface-variant">1h ago</span></p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                            Main Hangar
+                        </div>
+<span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full text-label-sm font-semibold">Normal</span>
+<button class="p-2 text-primary hover:bg-primary-container hover:text-on-primary-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Map/Sidebar Section -->
+<section class="space-y-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Fleet View</h3>
+<div class="bg-surface-container rounded-xl aspect-square relative overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A stylized, clean aerial map of a modern industrial logistics park or large factory complex. The map is designed with a minimalist aesthetic, using a soft color palette of light greys and whites, with sharp navy blue and electric blue pins marking machine locations. High-key lighting makes the map appear bright and professional, resembling a high-tech data visualization interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf_OH9PCdKkvtkn7pcGBmyDSbtNUlNl5IV8QNjNp4M2GaBKMCNxx_W0HVUkZWacgkJH2EWHv_nWv8OtI7VEo8wkm2os9CC0SZr2TUE6B1P9GFbbX1_plKErl1l-Mae7xYAsectYlwylLmFzCf98fy2TLpwZSCkF7mXhH-0MlieitSUhvbci03TJYLqEh8vYNHTWnYuyGeJz_pC4A3co6CEyCTpi_XOxv2-6xC3T9XpsOl0Y7Jgw_Tk-7-74qbfXcTakb21k8ZtmBJZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<button class="absolute bottom-4 right-4 bg-primary text-on-primary p-3 rounded-full shadow-lg active:scale-95 transition-all"><div class="flex items-center gap-2 px-1"><span class="material-symbols-outlined" data-icon="fullscreen">fullscreen</span><span class="font-label-sm">View Map</span></div></button>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl">
+<h4 class="font-label-md text-on-surface mb-2">Team on Duty</h4>
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface" data-alt="Close up portrait of a technician in a white safety helmet, clean professional lighting, tech maintenance setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMMN1sSaiEQ6DTe2V-OL6IFmg1OCTWiPfK6I_Dh9Z3aY44a0fimWn416HqnLdnLEhV8LIBl2XIai3F6u6h1Sc9HHc_iAYjB0Z3dKgqykBP3cc_VCeUAQLyuje1_pubeKshYFC1hHU8tdx_6QRfPJSSZBpqocqStilqgeWlKU2czXSKnbIX3E_jZ_fYiYAgvBy270ONIGnVafwz4qLnDhNDJb0-wMNuPJDHnX8S01sx-NndN6Anan-Te2WqllCyX_q-y7to39V8PHNP"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface" data-alt="Close up portrait of a female technician in field uniform, professional workspace lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCvL9cBBJ3lMik1AyOacG6tDzLIQO3OBzgTJJjyVrG6U5RBWvINzV55aJ969peLrDR4EL3UDbLngSvAHb89TWY021Io-P1HEfkxdRmrm2rhdbMYgr2XPhrS8GPVElmCNh98tyMBwzrLHGzBENoJebuwJCHt-ZBQu-ZOIF1ERAQF8R-iyCnaFwMRE9AoDztGmW3Gbbh3xbyX3f0tY9ZTfU4bzPdf83Bac9HNn09v_3o0hdpEyV7-W_9JyP8Ecnru1iuMWmfevMGvRdg"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface" data-alt="Close up portrait of a senior maintenance specialist, soft industrial background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeqUkgFS6i1LV8a9fY1aKrV1WCHONfG-MXtXF_w73I0JsRROgZztJXQpOGn979Z2oso6TlHbMZeXl1377-Bp0voPNBNPpOyg8v9YpHxyyLCoXz-J0hkElAnTKvRhp9bDNygCMju4_FotmxtCpb9DMu-JfnbQcEpU1Glfc70PYl8H5noa9lLqps_wtJYyrv7r5n5cAA6kfdSMWu14BYjaubJuvcWy4ClZh1oM6IveZVn7xCkuUvnS2Ac9vQpuo17Etv9oe0_K5aIPpg"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-high flex items-center justify-center text-[10px] font-bold">+4</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-20 pb-safe px-4 bg-surface dark:bg-inverse-surface shadow-[0_-2px_8px_rgba(0,0,0,0.04)] z-50 border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="font-label-sm text-label-sm">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings_suggest">settings_suggest</span>
+<span class="font-label-sm text-label-sm">Machines</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+</nav>
+<!-- Contextual FAB (Only on Dashboard) -->
+<button class="fixed bottom-24 right-6 md:bottom-8 md:right-8 bg-primary text-on-primary w-14 h-14 rounded-2xl flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all z-40 group">
+<span class="material-symbols-outlined text-[28px]" data-icon="add">add</span>
+<span class="absolute right-16 bg-on-surface text-surface px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">New Log</span>
+</button>
+<script>
+        // Simple interaction for the intervention cards
+        document.querySelectorAll('.priority-intervention-card').forEach(card => {
+            card.addEventListener('click', () => {
+                console.log('Navigating to intervention details...');
+            });
+        });
+
+        // Toggle mobile menu logic (minimal implementation)
+        const menuBtn = document.querySelector('[data-icon="menu"]').parentElement;
+        menuBtn.addEventListener('click', () => {
+            console.log('Mobile menu toggled');
+        });
+    </script>
+</body></html>

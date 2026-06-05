@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Asset Profile - CNC Mill X-2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #E2E8F0;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#cee9ff",
+                      "surface": "#f7f9fb",
+                      "on-primary-fixed-variant": "#0038b6",
+                      "secondary-fixed": "#d3e4fe",
+                      "primary-container": "#0052ff",
+                      "error-container": "#ffdad6",
+                      "outline": "#737688",
+                      "on-primary-fixed": "#001452",
+                      "surface-bright": "#f7f9fb",
+                      "secondary-container": "#d0e1fb",
+                      "inverse-on-surface": "#eff1f3",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-container-low": "#f2f4f6",
+                      "on-secondary-container": "#54647a",
+                      "inverse-surface": "#2d3133",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "surface-dim": "#d8dadc",
+                      "on-background": "#191c1e",
+                      "on-error": "#ffffff",
+                      "primary": "#003ec7",
+                      "on-surface-variant": "#434656",
+                      "surface-variant": "#e0e3e5",
+                      "background": "#f7f9fb",
+                      "primary-fixed": "#dde1ff",
+                      "on-primary-container": "#dfe3ff",
+                      "tertiary-fixed": "#c9e6ff",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "surface-container": "#eceef0",
+                      "outline-variant": "#c3c5d9",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#004ced",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#004c6e",
+                      "inverse-primary": "#b7c4ff",
+                      "primary-fixed-dim": "#b7c4ff",
+                      "tertiary-fixed-dim": "#89ceff",
+                      "on-secondary-fixed": "#0b1c30",
+                      "tertiary": "#005479",
+                      "on-surface": "#191c1e",
+                      "tertiary-container": "#006d9c",
+                      "surface-container-highest": "#e0e3e5",
+                      "secondary": "#505f76",
+                      "on-tertiary-fixed": "#001e2f",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "64px",
+                      "md": "24px",
+                      "gutter": "24px",
+                      "sidebar_width": "280px",
+                      "xs": "4px",
+                      "max_content_width": "1440px",
+                      "sm": "12px",
+                      "lg": "40px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-sm": ["11px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-[280px] h-screen sticky left-0 top-0 bg-surface-container-lowest border-r border-outline-variant shadow-sm flex flex-col py-md shrink-0">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-headline-md">precision_manufacturing</span>
+<div>
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary">Industrial Ops</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">GMAO Management</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors rounded-xl px-4 py-3 mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-xl px-4 py-3 mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span class="font-label-md text-label-md">Equipment</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors rounded-xl px-4 py-3 mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span class="font-label-md text-label-md">Failures</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors rounded-xl px-4 py-3 mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Spare Parts</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors rounded-xl px-4 py-3 mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors rounded-xl px-4 py-3 mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-md pt-md border-t border-outline-variant">
+<div class="flex items-center gap-sm bg-surface-container-low p-sm rounded-xl">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Close-up professional headshot of a middle-aged male maintenance engineer wearing a clean blue industrial uniform. The lighting is soft and natural, coming from an office window, creating a trustworthy and experienced atmosphere. The background is a slightly blurred industrial planning room with blueprints on the wall, following a clean, modern, light-mode corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLUYEjDfJrFFXMWD0bRdhUhkdSyJDYtVFlgAO-my1KQlEFcB7cEGmPSUmz0-f10YJdwUI4JpVIu_lN-9UBsS5Gb7BdihhoBo-ZOy1JcdnTBiT_hDOTm5LBbdM8qWlSL2fFkVd2o5rWEGM7H6MvhWrOt1Tk4dhWELABTINBHn4UpVH73c3Qt4EUi3bFQDojXcEX1cPySkOIObUEDemn8Hj3ayLFGA1l92PPy3dUcOz_xSaAaTWDAb1at1sNcWjrqg4SJCREoQr9z8lS"/>
+<div class="overflow-hidden">
+<p class="text-body-sm font-semibold truncate">Marcus Chen</p>
+<p class="text-label-sm text-on-surface-variant">Lead Supervisor</p>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 flex flex-col">
+<!-- TopNavBar -->
+<header class="w-full h-20 sticky top-0 z-40 bg-surface border-b border-outline-variant shadow-sm flex items-center px-lg">
+<div class="flex-1 flex items-center">
+<div class="relative w-full max-w-md focus-within:ring-2 focus-within:ring-primary rounded-xl">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-2 pl-10 pr-4 text-body-md focus:ring-0" placeholder="Search assets, IDs, or history..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-sm px-4 py-2 text-error font-semibold border border-error rounded-lg hover:bg-error-container transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                        Emergency Stop
+                    </button>
+<button class="flex items-center gap-sm px-4 py-2 bg-primary text-on-primary font-semibold rounded-lg hover:bg-primary-container transition-all shadow-md">
+<span class="material-symbols-outlined">add</span>
+                        New Work Order
+                    </button>
+<div class="flex gap-sm ml-md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-lg overflow-y-auto">
+<div class="max-w-max_content_width mx-auto">
+<!-- Header Section: Asset Info -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow p-md mb-gutter overflow-hidden relative">
+<div class="flex flex-col md:flex-row gap-lg">
+<!-- Image -->
+<div class="w-full md:w-80 h-64 shrink-0 rounded-lg overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A high-precision industrial CNC milling machine, the Mill X-2, captured in a bright, modern factory setting. The machine is pristine, made of polished steel and dark grey composites, with its internal workspace visible through a clear shield. Soft, diffused overhead industrial lighting highlights the clean lines and technical complexity. The background shows a clean, organized shop floor with a minimalist white and light grey color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBodQaG-S8b8hY5o5CbY9NPU9YVlpdNN1QL4mI_PSAe0m_BWHjbeZ0G7CG1IzUIqLZRD6KQMSyoVwpBvIadZ_uGs9tjfOWiAgTieRZ1q1BdSNKE_2XtIkKz-b9WfsL7RpKfwRIIUG18AIasPrpME_VB0vDMA8Eq8oYnkOOVyix7jayirxLjXcnrjVxwxNyVJeG-eajd5Gm2xqEgPnb87WBN0hCsXM-o-kTwz22jWnZWUIOdzjrYRMC2Vi1aj8zpH0MpvUbbeWJYmhrd"/>
+</div>
+<!-- Title & Status -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-md mb-sm">
+<h2 class="text-headline-lg font-headline-lg text-on-surface">CNC Mill X-2</h2>
+<span class="px-3 py-1 bg-[#E1F5FE] text-[#01579B] text-label-md font-bold rounded-full uppercase tracking-wider">Operational</span>
+</div>
+<p class="text-body-lg text-on-surface-variant mb-md font-medium">Asset ID: ASSET-CNC-00452-X</p>
+<div class="flex flex-wrap gap-md mt-lg">
+<button class="flex items-center gap-sm px-md py-3 bg-primary text-on-primary rounded-lg font-semibold hover:shadow-lg transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">report</span>
+                                            Log New Incident
+                                        </button>
+<button class="flex items-center gap-sm px-md py-3 bg-surface border border-outline-variant text-primary rounded-lg font-semibold hover:bg-surface-container-low transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">qr_code_2</span>
+                                            Print QR Code
+                                        </button>
+</div>
+</div>
+<div class="mt-lg pt-md border-t border-outline-variant flex items-center gap-xl">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">history</span>
+<div>
+<p class="text-label-sm text-on-surface-variant">Last Service</p>
+<p class="text-body-sm font-semibold">12 Days Ago</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">timer</span>
+<div>
+<p class="text-label-sm text-on-surface-variant">Running Time</p>
+<p class="text-body-sm font-semibold">4,280 Hours</p>
+</div>
+</div>
+</div>
+</div>
+<!-- QR Code -->
+<div class="w-full md:w-auto flex flex-col items-center justify-center p-md bg-surface-container-low rounded-xl border border-outline-variant">
+<div class="bg-white p-2 rounded-lg mb-2">
+<img alt="QR Code" class="w-32 h-32" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi1GrIwYLuYYGQIgGPr-w0xbsdcJI34d_9ypyAzeIDzxMB80KS0dnm3lvm3a4mjD7mg3LWeKWrLjpuNN4WOU45w3nWJ4pD1ku6Cl7OXPrRjQLmjr9L8O1gAdKUxCGyPiWxgPojMcH9QFAvUOsO2lkwvHabQO0oBzGoYXnKmr8qy6kq4kkioVyUvPUT-GKZb_nkeKI2KGffi5Qmft5OhmCCeHhl17ZGvqQmmx7mJpjsOcQWyYAVMpDup6ghl7BwumQcXZ_QYljPP2U-"/>
+</div>
+<span class="text-label-md font-bold text-on-surface-variant">SCAN FOR MANUAL</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Technical Specs -->
+<div class="lg:col-span-1 space-y-gutter">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow overflow-hidden">
+<div class="px-md py-sm border-b border-outline-variant bg-surface-container-low">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Technical Specifications</h3>
+</div>
+<div class="p-md space-y-md">
+<div class="flex justify-between items-center py-sm border-b border-outline-variant">
+<span class="text-body-md text-on-surface-variant">Model</span>
+<span class="text-body-md font-semibold">V-Series Elite 2024</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-outline-variant">
+<span class="text-body-md text-on-surface-variant">Power Requirement</span>
+<span class="text-body-md font-semibold">400V / 50Hz / 30kW</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-outline-variant">
+<span class="text-body-md text-on-surface-variant">Max RPM</span>
+<span class="text-body-md font-semibold">18,000 RPM</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-outline-variant">
+<span class="text-body-md text-on-surface-variant">Coolant Type</span>
+<span class="text-body-md font-semibold">Synthetic Blend C-30</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-outline-variant">
+<span class="text-body-md text-on-surface-variant">Installation Date</span>
+<span class="text-body-md font-semibold">Jan 14, 2023</span>
+</div>
+<div class="flex justify-between items-center py-sm">
+<span class="text-body-md text-on-surface-variant">Warranty Status</span>
+<span class="text-body-md font-semibold text-primary">Active until 2026</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow overflow-hidden">
+<div class="px-md py-sm border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Active Work Orders</h3>
+<span class="bg-primary text-on-primary text-label-md px-2 py-1 rounded-full">2</span>
+</div>
+<div class="p-md space-y-md">
+<div class="p-sm bg-surface rounded-lg border-l-4 border-error">
+<div class="flex justify-between mb-xs">
+<span class="text-label-md font-bold text-error uppercase">High Priority</span>
+<span class="text-label-sm text-on-surface-variant">#WO-9921</span>
+</div>
+<p class="text-body-sm font-semibold mb-xs">Spindle Vibration Alert</p>
+<p class="text-label-sm text-on-surface-variant">Assigned to: Tom R.</p>
+</div>
+<div class="p-sm bg-surface rounded-lg border-l-4 border-primary">
+<div class="flex justify-between mb-xs">
+<span class="text-label-md font-bold text-primary uppercase">Routine</span>
+<span class="text-label-sm text-on-surface-variant">#WO-9945</span>
+</div>
+<p class="text-body-sm font-semibold mb-xs">Bi-Weekly Filter Clean</p>
+<p class="text-label-sm text-on-surface-variant">Scheduled: Tomorrow</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Maintenance History -->
+<div class="lg:col-span-2">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow overflow-hidden h-full">
+<div class="px-md py-sm border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Maintenance History</h3>
+<div class="flex gap-sm">
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">download</span>
+</button>
+</div>
+</div>
+<div class="p-lg">
+<div class="relative">
+<!-- Vertical Line -->
+<div class="absolute left-4 top-0 bottom-0 w-0.5 bg-outline-variant"></div>
+<div class="space-y-xl">
+<!-- Entry 1 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-surface-container-highest border-2 border-primary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div class="flex justify-between items-start mb-xs">
+<h4 class="text-body-lg font-bold text-on-surface">Annual Precision Calibration</h4>
+<span class="text-label-md text-on-surface-variant">Oct 12, 2024</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-sm">Full recalibration of all axes. Replaced sensor module S-2. Accuracy restored to +/- 0.005mm.</p>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs px-2 py-1 bg-surface-container rounded-lg text-label-sm text-on-secondary-container">
+<span class="material-symbols-outlined text-xs">person</span>
+                                                        Alex Volkov
+                                                    </div>
+<div class="flex items-center gap-xs px-2 py-1 bg-surface-container rounded-lg text-label-sm text-on-secondary-container">
+<span class="material-symbols-outlined text-xs">attach_file</span>
+                                                        calibration_report_v2.pdf
+                                                    </div>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-surface-container-highest border-2 border-error flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-error text-sm" style="font-variation-settings: 'wght' 700;">build</span>
+</div>
+<div class="flex justify-between items-start mb-xs">
+<h4 class="text-body-lg font-bold text-on-surface">Emergency Repair: Spindle Overheating</h4>
+<span class="text-label-md text-on-surface-variant">Aug 05, 2024</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-sm">Machine was automatically shut down due to thermal threshold breach. Cooling pump replaced. System purged and refilled.</p>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs px-2 py-1 bg-surface-container rounded-lg text-label-sm text-on-secondary-container">
+<span class="material-symbols-outlined text-xs">person</span>
+                                                        Sarah Jenkins
+                                                    </div>
+<span class="text-label-sm font-bold text-error">Down-time: 4.5 Hours</span>
+</div>
+</div>
+<!-- Entry 3 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-surface-container-highest border-2 border-outline flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-outline text-sm" style="font-variation-settings: 'wght' 700;">oil_barrel</span>
+</div>
+<div class="flex justify-between items-start mb-xs">
+<h4 class="text-body-lg font-bold text-on-surface">Routine Fluid Replacement</h4>
+<span class="text-label-md text-on-surface-variant">Jun 14, 2024</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-sm">Standard 2000-hour service. Hydraulic oil changed, filters swapped, and lubrication ports cleared.</p>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs px-2 py-1 bg-surface-container rounded-lg text-label-sm text-on-secondary-container">
+<span class="material-symbols-outlined text-xs">person</span>
+                                                        Mark Higgins
+                                                    </div>
+</div>
+</div>
+<!-- Entry 4 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-surface-container-highest border-2 border-primary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'wght' 700;">verified</span>
+</div>
+<div class="flex justify-between items-start mb-xs">
+<h4 class="text-body-lg font-bold text-on-surface">Installation &amp; Initial Setup</h4>
+<span class="text-label-md text-on-surface-variant">Jan 14, 2023</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Machine successfully commissioned and leveled. Baseline performance metrics established.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        // Subtle hover interaction for the side navigation
+        document.querySelectorAll('aside nav a').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                if(!item.classList.contains('bg-secondary-container')) {
+                    item.classList.add('translate-x-1');
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('translate-x-1');
+            });
+        });
+
+        // Simple button active state feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.97)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>
