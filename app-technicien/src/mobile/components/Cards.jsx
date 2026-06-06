@@ -28,15 +28,15 @@ export function InterventionCard({ panne, onOpen }) {
           <Icon className={urgent ? 'text-tertiary' : 'text-primary'}>precision_manufacturing</Icon>
         </div>
         <div className="min-w-0">
-          <h4 className="font-label-md text-on-surface line-clamp-2">{panne.description || 'Hydraulic Pump Failure'}</h4>
+          <h4 className="font-label-md text-on-surface line-clamp-2">{panne.description || 'Panne hydraulique'}</h4>
           <p className="text-on-surface-variant text-label-sm truncate">
-            Machine ID: #{panne.equipement_id} • {panne.localisation || 'Sector 7G'} • <span className={urgent ? 'text-error font-semibold' : 'text-on-surface-variant'}>{formatTime(panne.created_at)}</span>
+            Machine #{panne.equipement_id} • {panne.localisation || 'Zone 7'} • <span className={urgent ? 'text-error font-semibold' : 'text-on-surface-variant'}>{formatTime(panne.created_at)}</span>
           </p>
         </div>
       </div>
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-1 text-on-surface-variant font-label-sm truncate">
-          <Icon className="text-[16px]">location_on</Icon>{panne.localisation || 'North Depot'}
+          <Icon className="text-[16px]">location_on</Icon>{panne.localisation || 'Dépôt Nord'}
         </div>
         <span className={`${meta.pillClass} px-3 py-1 rounded-full text-label-sm font-semibold shrink-0`}>{meta.shortLabel}</span>
       </div>

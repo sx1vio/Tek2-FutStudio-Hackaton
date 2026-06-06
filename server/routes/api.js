@@ -176,7 +176,7 @@ router.get('/pannes/:id/diagnostic', (req, res) => {
 router.get('/analytics/pannes-par-equipement', (req, res) => res.json(all('SELECT e.nom, COUNT(p.id) total FROM equipements e LEFT JOIN pannes p ON p.equipement_id=e.id GROUP BY e.id ORDER BY total DESC')));
 router.get('/analytics/pieces-frequentes', (req, res) => res.json(all('SELECT piece_nom, SUM(quantite) total FROM demandes_pieces GROUP BY piece_nom ORDER BY total DESC')));
 router.get('/analytics/tendances', (req, res) => res.json(all('SELECT date(created_at) jour, COUNT(*) total FROM pannes GROUP BY date(created_at) ORDER BY jour')));
-router.get('/analytics/risques', (req, res) => res.json(all('SELECT e.nom, e.criticite, COUNT(p.id) * CASE e.criticite WHEN "critique" THEN 4 WHEN "haute" THEN 3 WHEN "moyenne" THEN 2 ELSE 1 END score FROM equipements e LEFT JOIN pannes p ON p.equipement_id=e.id GROUP BY e.id ORDER BY score DESC')));
+router.get('/analytics/risques', (req, res) => res.json(all("SELECT e.nom, e.criticite, (COUNT(p.id) + 1) * CASE e.criticite WHEN 'critique' THEN 4 WHEN 'haute' THEN 3 WHEN 'moyenne' THEN 2 ELSE 1 END score FROM equipements e LEFT JOIN pannes p ON p.equipement_id=e.id GROUP BY e.id ORDER BY score DESC")));
 
 router.get('/users', (req, res) => res.json(all('SELECT id,email,role,nom,prenom,created_at FROM users ORDER BY id')));
 router.post('/users', (req, res) => {

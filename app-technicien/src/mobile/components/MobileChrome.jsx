@@ -28,10 +28,10 @@ export function Screen({ children, className = '', withBottomNav = false }) {
 
 export function BottomNav({ current, navigate }) {
   const items = [
-    ['dashboard', 'dashboard', 'Home'],
+    ['dashboard', 'dashboard', 'Accueil'],
     ['scan', 'qr_code_scanner', 'Scan'],
-    ['report', 'report_problem', 'Report'],
-    ['intervention', 'assignment_turned_in', 'Tasks']
+    ['report', 'report_problem', 'Signaler'],
+    ['intervention', 'assignment_turned_in', 'Tâches']
   ];
 
   return (
@@ -58,7 +58,7 @@ export function OfflineBanner({ offlineCount, syncMessage }) {
   if (!offlineCount && !syncMessage) return null;
   return (
     <div className="mt-3 px-3 py-2 rounded-lg bg-primary-fixed text-on-primary-fixed text-label-sm">
-      {offlineCount > 0 ? `${offlineCount} offline report(s) waiting for sync.` : syncMessage}
+      {offlineCount > 0 ? `${offlineCount} rapport(s) hors-ligne en attente de synchronisation.` : syncMessage}
     </div>
   );
 }
