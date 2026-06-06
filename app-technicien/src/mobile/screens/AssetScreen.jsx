@@ -40,7 +40,7 @@ export default function AssetScreen({ equipment, onBack, onReport }) {
     <Screen>
       <AppBar title="Fiche équipement" leading="arrow_back" onLeading={onBack} />
 
-      <main className="pt-20 pb-10 px-margin-mobile max-w-3xl mx-auto space-y-md">
+      <main className="flex-1 overflow-y-auto px-margin-mobile pt-4 pb-4 max-w-3xl mx-auto w-full space-y-md">
         {/* Main card */}
         <section className="p-md bg-surface-container-lowest rounded-xl border border-[#F2F2F7] shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
           <div className="aspect-video bg-surface-container rounded-lg overflow-hidden mb-md">

@@ -56,7 +56,7 @@ export default function ScanScreen({ equipements, onBack, onSelect }) {
         }
       />
 
-      <main className="pt-20 pb-10 px-margin-mobile max-w-3xl mx-auto space-y-md">
+      <main className="flex-1 overflow-y-auto px-margin-mobile pt-4 pb-4 max-w-3xl mx-auto w-full space-y-md">
         <section className="bg-surface-container-lowest p-md rounded-xl border border-[#F2F2F7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-md">
           <div className="flex items-center justify-between">
             <h2 className="font-headline-md text-headline-md text-on-surface">Scan QR Code</h2>

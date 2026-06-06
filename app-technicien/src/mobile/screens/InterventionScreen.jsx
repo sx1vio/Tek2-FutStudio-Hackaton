@@ -72,7 +72,7 @@ export default function InterventionScreen({ panne, onBack, reload }) {
         }
       />
 
-      <main className="pt-20 pb-36 px-margin-mobile max-w-3xl mx-auto">
+      <main className="flex-1 overflow-y-auto px-margin-mobile pt-4 pb-4 max-w-3xl mx-auto w-full">
         {/* En-tête panne */}
         <div className="mb-md p-md bg-surface-container-lowest rounded-xl border border-[#F2F2F7] shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
           <div className="flex items-center justify-between mb-xs">
@@ -234,8 +234,8 @@ export default function InterventionScreen({ panne, onBack, reload }) {
         )}
       </main>
 
-      {/* Barre d'action fixe en bas */}
-      <div className="fixed bottom-0 left-0 w-full bg-surface shadow-[0_-4px_20px_rgba(0,0,0,0.07)] p-md z-50">
+      {/* Barre d'action en bas */}
+      <div className="shrink-0 bg-surface shadow-[0_-4px_20px_rgba(0,0,0,0.07)] px-margin-mobile py-3 z-50">
         <div className="max-w-3xl mx-auto flex flex-col gap-sm">
           {message && <p className="text-label-sm text-primary text-center">{message}</p>}
           {allDone ? (

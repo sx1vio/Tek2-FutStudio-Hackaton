@@ -13,18 +13,18 @@ const STEPS = [
 ];
 
 const SUGGESTED_PARTS = [
-  { name: 'Mechanical Seal Kit HZ-880', icon: 'settings_input_component', stock: true },
-  { name: 'High-Temp Lubricant Cartridge', icon: 'hardware', stock: true },
-  { name: 'Drive Belt V-Series 450', icon: 'settings_input_component', stock: false }
+  { name: 'Mechanical Seal Kit HZ-880',       icon: 'settings_input_component', stock: true },
+  { name: 'High-Temp Lubricant Cartridge',    icon: 'hardware',                  stock: true },
+  { name: 'Drive Belt V-Series 450',          icon: 'settings_input_component', stock: false }
 ];
 
 export default function ReportScreen({ equipements, selectedEquipment, setSelectedEquipment, onClose, onCreated }) {
-  const [form, setForm] = useState({ equipement_id: selectedEquipment?.id || '', description: '', severite: 'urgent' });
-  const [files, setFiles] = useState([]);
-  const [parts, setParts] = useState(['Mechanical Seal Kit HZ-880']);
-  const [error, setError] = useState('');
+  const [form, setForm]         = useState({ equipement_id: selectedEquipment?.id || '', description: '', severite: 'urgent' });
+  const [files, setFiles]       = useState([]);
+  const [parts, setParts]       = useState(['Mechanical Seal Kit HZ-880']);
+  const [error, setError]       = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [recording, setRecording] = useState(false);
+  const [recording, setRecording]   = useState(false);
   const recognitionRef = useRef(null);
 
   const currentAsset = equipements.find((e) => String(e.id) === String(form.equipement_id)) || selectedEquipment || equipements[0];
@@ -35,15 +35,8 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
 
   function toggleVoice() {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) {
-      setError('Reconnaissance vocale non supportée dans ce navigateur. Utilisez Chrome ou Edge.');
-      return;
-    }
-    if (recording && recognitionRef.current) {
-      recognitionRef.current.stop();
-      setRecording(false);
-      return;
-    }
+    if (!SR) { setError('Reconnaissance vocale non supportée dans ce navigateur. Utilisez Chrome ou Edge.'); return; }
+    if (recording && recognitionRef.current) { recognitionRef.current.stop(); setRecording(false); return; }
     const recognition = new SR();
     recognition.lang = 'fr-FR';
     recognition.continuous = false;
@@ -53,8 +46,8 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
       setForm((f) => ({ ...f, description: f.description ? `${f.description} ${text}` : text }));
       setRecording(false);
     };
-    recognition.onerror = () => { setRecording(false); };
-    recognition.onend = () => setRecording(false);
+    recognition.onerror = () => setRecording(false);
+    recognition.onend   = () => setRecording(false);
     recognition.start();
     recognitionRef.current = recognition;
     setRecording(true);
@@ -97,9 +90,10 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
   }
 
   return (
-    <div className="bg-background text-on-background font-body-md min-h-screen">
-      {/* Header */}
-      <header className="fixed top-0 w-full z-50 shadow-sm bg-surface flex items-center justify-between px-margin-mobile h-16">
+    <div className="flex-1 flex flex-col overflow-hidden bg-background text-on-background">
+
+      {/* En-tête */}
+      <header className="shrink-0 z-50 bg-surface border-b border-outline-variant/40 flex items-center justify-between px-margin-mobile h-16">
         <div className="flex items-center gap-4">
           <button onClick={onClose} className="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
             <Icon className="text-primary">close</Icon>
@@ -112,9 +106,9 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
         </div>
       </header>
 
-      {/* Step indicators */}
-      <div className="fixed top-16 w-full z-40 bg-surface-container-low border-b border-outline-variant px-margin-mobile py-3">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
+      {/* Indicateur d'étapes */}
+      <div className="shrink-0 z-40 bg-surface-container-low border-b border-outline-variant px-margin-mobile py-3">
+        <div className="flex items-center justify-between">
           {STEPS.map((step, index) => (
             <React.Fragment key={step.label}>
               <StepPill step={step} active={index < 2} />
@@ -124,10 +118,11 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
         </div>
       </div>
 
-      <form onSubmit={submit}>
-        <main className="pt-36 pb-32 max-w-4xl mx-auto px-margin-mobile">
+      {/* Formulaire scrollable */}
+      <form onSubmit={submit} className="flex-1 flex flex-col overflow-hidden">
+        <main className="flex-1 overflow-y-auto px-margin-mobile pt-4 pb-4">
 
-          {/* Asset selector */}
+          {/* Sélecteur d'équipement */}
           <section className="mb-lg p-6 bg-surface-container-lowest rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-[#F2F2F7] flex flex-col gap-6">
             <div className="w-full aspect-video bg-surface-container rounded-lg overflow-hidden">
               <MachineVisual />
@@ -150,7 +145,7 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
             </div>
           </section>
 
-          {/* Severity */}
+          {/* Sévérité */}
           <section className="mb-lg">
             <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-4">Sélectionner la sévérité</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -159,19 +154,19 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
                   type="button"
                   key={value}
                   onClick={() => setForm({ ...form, severite: value })}
-                  className={`flex flex-col items-center p-6 bg-surface-container-lowest border-2 ${form.severite === value ? 'border-primary bg-primary-container/5 shadow-md' : 'border-transparent'} rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all active:scale-95`}
+                  className={`flex flex-col items-center p-4 bg-surface-container-lowest border-2 ${form.severite === value ? 'border-primary bg-primary-container/5 shadow-md' : 'border-transparent'} rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all active:scale-95`}
                 >
-                  <div className={`w-12 h-12 rounded-full ${meta.bgClass} flex items-center justify-center mb-3`}>
+                  <div className={`w-10 h-10 rounded-full ${meta.bgClass} flex items-center justify-center mb-2`}>
                     <Icon className={meta.textClass}>{meta.icon}</Icon>
                   </div>
                   <span className={`font-label-md text-label-md ${meta.textClass} font-bold`}>{meta.label}</span>
-                  <span className="text-[10px] text-outline text-center mt-1">{meta.hint}</span>
+                  <span className="text-[10px] text-outline text-center mt-1 leading-tight">{meta.hint}</span>
                 </button>
               ))}
             </div>
           </section>
 
-          {/* Voice report */}
+          {/* Signalement vocal */}
           <section className="mb-lg">
             <div className="p-6 bg-primary rounded-xl flex flex-col items-center gap-4 overflow-hidden relative shadow-lg">
               <div className="absolute -right-12 -top-12 w-48 h-48 bg-primary-container rounded-full opacity-20" />
@@ -190,24 +185,24 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
             </div>
           </section>
 
-          {/* Manual description */}
+          {/* Description */}
           <section className="mb-lg">
             <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-4">Description de la panne</h3>
             <textarea
-              className="w-full min-h-[160px] p-6 bg-surface-container-lowest border border-[#F2F2F7] rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline resize-none"
+              className="w-full min-h-[140px] p-4 bg-surface-container-lowest border border-[#F2F2F7] rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline resize-none"
               placeholder="Décrivez les symptômes, codes d'erreur ou dommages physiques observés…"
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
             />
           </section>
 
-          {/* Guided photos */}
+          {/* Photos guidées */}
           <section className="mb-lg">
             <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-4">Capture photo guidée</h3>
-            <div className="grid grid-cols-2 gap-3 mb-3">
+            <div className="grid grid-cols-2 gap-2 mb-3">
               {['1. Vue de face', '2. Détail de la panne', '3. Plaque de série', '4. Environnement'].map((label) => (
-                <div key={label} className="p-3 bg-surface-container-low rounded-xl border border-outline-variant text-label-sm text-on-surface-variant flex items-center gap-2">
-                  <Icon className="text-[16px]">photo_camera</Icon>{label}
+                <div key={label} className="p-2 bg-surface-container-low rounded-xl border border-outline-variant text-label-sm text-on-surface-variant flex items-center gap-1.5">
+                  <Icon className="text-[14px] shrink-0">photo_camera</Icon><span className="truncate">{label}</span>
                 </div>
               ))}
             </div>
@@ -218,29 +213,29 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
             </label>
           </section>
 
-          {/* Spare parts */}
-          <section className="mb-xl">
+          {/* Pièces suggérées */}
+          <section className="mb-lg">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Pièces de rechange suggérées</h3>
               <span className="text-[10px] text-outline font-bold">BASÉ SUR L'HISTORIQUE</span>
             </div>
             {SUGGESTED_PARTS.map(({ name, icon, stock }, index) => (
               <div key={name} className="p-4 bg-surface-container-low rounded-xl flex items-center justify-between mb-3 hover:bg-surface-container transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm shrink-0">
                     <Icon className="text-on-surface-variant">{icon}</Icon>
                   </div>
-                  <div>
-                    <p className="font-label-md text-label-md text-on-surface">{name}</p>
+                  <div className="min-w-0">
+                    <p className="font-label-md text-label-md text-on-surface truncate">{name}</p>
                     <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded ${index === 2 ? 'bg-error-container text-error' : 'bg-primary-container/10 text-primary'}`}>
-                      {stock ? 'IN STOCK' : '3 IN STOCK'}
+                      {stock ? 'EN STOCK' : '3 EN STOCK'}
                     </span>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => setParts(parts.includes(name) ? parts.filter((p) => p !== name) : [...parts, name])}
-                  className={`w-10 h-10 rounded-full border border-[#F2F2F7] flex items-center justify-center transition-all active:scale-90 shadow-sm ${parts.includes(name) ? 'bg-primary text-white' : 'bg-white text-primary'}`}
+                  className={`w-10 h-10 rounded-full border border-[#F2F2F7] flex items-center justify-center transition-all active:scale-90 shadow-sm shrink-0 ${parts.includes(name) ? 'bg-primary text-white' : 'bg-white text-primary'}`}
                 >
                   <Icon>{parts.includes(name) ? 'check' : 'add'}</Icon>
                 </button>
@@ -250,9 +245,9 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
           </section>
         </main>
 
-        {/* Submit footer */}
-        <footer className="fixed bottom-0 left-0 w-full bg-surface-container-lowest p-md border-t border-[#F2F2F7] z-50">
-          <div className="max-w-4xl mx-auto flex items-center gap-4">
+        {/* Pied de page fixe */}
+        <footer className="shrink-0 bg-surface-container-lowest px-margin-mobile py-3 border-t border-[#F2F2F7]">
+          <div className="flex items-center gap-3">
             <button
               disabled={submitting}
               className="flex-1 py-4 bg-primary text-white rounded-xl font-label-md font-bold shadow-lg shadow-primary/20 active:scale-95 disabled:opacity-70 flex items-center justify-center gap-2"
@@ -262,7 +257,7 @@ export default function ReportScreen({ equipements, selectedEquipment, setSelect
             <button
               type="button"
               onClick={() => queueOffline('panne', { form, files, parts }).then(onClose)}
-              className="px-6 py-4 border border-[#F2F2F7] text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all active:scale-95"
+              className="px-5 py-4 border border-[#F2F2F7] text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all active:scale-95"
             >
               Brouillon
             </button>

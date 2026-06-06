@@ -8,7 +8,7 @@ export default function DashboardScreen({ user, pannes, offlineCount, syncMessag
   const critical = pannes.find((p) => p.severite === 'critique') || pannes[0];
 
   return (
-    <Screen withBottomNav>
+    <Screen>
       <AppBar
         title="FieldTech Pro"
         onLeading={() => navigate('dashboard')}
@@ -20,7 +20,7 @@ export default function DashboardScreen({ user, pannes, offlineCount, syncMessag
         }
       />
 
-      <main className="px-margin-mobile pt-24 pb-8">
+      <main className="px-margin-mobile pt-6 pb-4 flex-1 overflow-y-auto">
         <section className="mb-lg">
           <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Bonjour, {user.prenom || 'Technicien'}</h2>
           <p className="font-body-md text-on-surface-variant">Voici l'état de votre parc pour aujourd'hui.</p>
